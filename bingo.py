@@ -74,19 +74,37 @@ def sorteio_dezenas(intervalos):
             contador += 1
     return sorteadas
 
-'''
+def alinhar_cartelas(cartelas, jogadores, sorteadas):
+    for i in range(len(cartelas)):
+        print(f"\nJogador {jogadores[i]}:")
+        for linha in cartelas[i]:
+            for num in linha:
+                if num in sorteadas:
+                    print(f"({num:02})", end=" ")  
+                else:
+                    print(f" {num:02} ", end=" ")  
+            print()
+
+def verificar_vencedor(cartela, sorteadas):
+    for linha in cartela:
+        for num in linha:
+            if num not in sorteadas:
+                return False
+    return True
+
 def jogar():
     #TESTE
     num_cartelas, linhas, colunas, intervalos = modo()
     jogadores = []
     for i in range(1, 5):
         jogadores.append(i)
-    cartelas, utilidade0 = criar_cartelas(5, 6, 5, 10)  
-    cartelas = ajustar_cartelas(cartelas, 5, 6, 5)
+    cartelas, utilidade0 = criar_cartelas(num_cartelas, linhas, colunas, intervalos)  
+    cartelas = ajustar_cartelas(cartelas, num_cartelas, linhas, colunas)
+    alinhar_cartelas(cartelas, jogadores, [])
     todas_dezenas = sorteio_dezenas(intervalos)
     sorteadas = []
     sorteadas_len = 0
-    
+    vencedores = []
     while True:
         input("\nDigite ENTER para continuar ")
         n = todas_dezenas[sorteadas_len]
@@ -95,8 +113,13 @@ def jogar():
         sorteadas.sort()
         print(f"=> Última dezena sorteada: {n}")
         print(f"Dezenas sorteadas até o momento:", end=" ")
-        for i in range(sorteadas_len):
-            print(sorteadas[i], end=" ")
+        for i in range(num_cartelas):
+            if vencedores[i] == 0:
+                if verificar_vencedor(cartelas[i], sorteadas):
+                    vencedores[i] = 1
+                    print(f"\nJogador {jogadores[i]} é o ganhador!")
+        if sum(vencedores) > 0:
+            input("\nClique ENTER para sair da tela. ")
+            break
 
 jogar()
-'''
