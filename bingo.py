@@ -93,10 +93,10 @@ def verificar_vencedor(cartela, sorteadas):
     return True
 
 def jogar():
-    #TESTE
+    # TESTE
     num_cartelas, linhas, colunas, intervalos = modo()
     jogadores = []
-    for i in range(1, 5):
+    for i in range(1, num_cartelas+1):
         jogadores.append(i)
     cartelas, utilidade0 = criar_cartelas(num_cartelas, linhas, colunas, intervalos)  
     cartelas = ajustar_cartelas(cartelas, num_cartelas, linhas, colunas)
@@ -105,6 +105,8 @@ def jogar():
     sorteadas = []
     sorteadas_len = 0
     vencedores = []
+    for utilidade0 in range(num_cartelas):
+        vencedores.append(0)
     while True:
         input("\nDigite ENTER para continuar ")
         n = todas_dezenas[sorteadas_len]
@@ -113,6 +115,9 @@ def jogar():
         sorteadas.sort()
         print(f"=> Última dezena sorteada: {n}")
         print(f"Dezenas sorteadas até o momento:", end=" ")
+        for i in range(sorteadas_len):
+            print(sorteadas[i], end=" ")
+        alinhar_cartelas(cartelas, jogadores, sorteadas)
         for i in range(num_cartelas):
             if vencedores[i] == 0:
                 if verificar_vencedor(cartelas[i], sorteadas):
