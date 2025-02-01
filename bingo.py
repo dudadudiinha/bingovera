@@ -35,3 +35,33 @@ def criar_cartelas(quant_cartelas, linhas, colunas, intervalo):
                 cartela[linha].append(numeros_coluna[linha])
         cartelas.append(cartela)
     return cartelas, quant_cartelas
+
+def mostrar_cartela(jogadores, cartelas):
+    for i in range(len(cartelas)):
+        print(f"\n{jogadores[i]}")
+        for linha in cartelas[i]:
+            for num in linha:
+                print(f"{num:02}", end=" ")
+            print()
+
+def ajustar_cartelas(cartelas, num_cartelas, linhas, colunas):
+    cartelas_certinhas = []
+    for cartela in range(num_cartelas):
+        nova_cartela = []
+        for linha in range(linhas):
+            nova_cartela.append([])
+            for coluna in range(colunas):
+                nova_cartela[linha].append(cartelas[cartela][linha][coluna])
+        cartelas_certinhas.append(nova_cartela)
+    return cartelas_certinhas
+
+#def jogar():
+    # TESTE
+    # num_cartelas, linhas, colunas, intervalos = modo()
+    # jogadores = []
+    #for i in range(1, 5):
+    #    jogadores.append(i)
+    #cartelas, utilidade0 = criar_cartelas(5, 6, 5, 10)  
+    #cartelas = ajustar_cartelas(cartelas, 5, 6, 5)
+
+#jogar()
