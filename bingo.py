@@ -76,7 +76,7 @@ def sorteio_dezenas(intervalos):
 
 '''
 def jogar():
-    TESTE
+    #TESTE
     num_cartelas, linhas, colunas, intervalos = modo()
     jogadores = []
     for i in range(1, 5):
