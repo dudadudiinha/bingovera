@@ -55,13 +55,48 @@ def ajustar_cartelas(cartelas, num_cartelas, linhas, colunas):
         cartelas_certinhas.append(nova_cartela)
     return cartelas_certinhas
 
-#def jogar():
-    # TESTE
-    # num_cartelas, linhas, colunas, intervalos = modo()
-    # jogadores = []
-    #for i in range(1, 5):
-    #    jogadores.append(i)
-    #cartelas, utilidade0 = criar_cartelas(5, 6, 5, 10)  
-    #cartelas = ajustar_cartelas(cartelas, 5, 6, 5)
+def sorteio_dezenas(intervalos):
+    all_dezenas = []
+    for i in range(len(intervalos)):
+        inicio, fim = intervalos[i]
+        for num in range(inicio, fim+1):
+            all_dezenas.append(num)
+    sorteadas = [] 
+    contador = 0
+    while contador < len(all_dezenas):
+        num = all_dezenas[random.randint(0, len(all_dezenas)-1)]
+        repetidos = 0
+        for indice in range(contador):
+            if sorteadas[indice] == num:
+                repetidos = 1
+        if repetidos == 0:
+            sorteadas.append(num) 
+            contador += 1
+    return sorteadas
 
-#jogar()
+'''
+def jogar():
+    TESTE
+    num_cartelas, linhas, colunas, intervalos = modo()
+    jogadores = []
+    for i in range(1, 5):
+        jogadores.append(i)
+    cartelas, utilidade0 = criar_cartelas(5, 6, 5, 10)  
+    cartelas = ajustar_cartelas(cartelas, 5, 6, 5)
+    todas_dezenas = sorteio_dezenas(intervalos)
+    sorteadas = []
+    sorteadas_len = 0
+    
+    while True:
+        input("\nDigite ENTER para continuar ")
+        n = todas_dezenas[sorteadas_len]
+        sorteadas.append(n)
+        sorteadas_len += 1
+        sorteadas.sort()
+        print(f"=> Última dezena sorteada: {n}")
+        print(f"Dezenas sorteadas até o momento:", end=" ")
+        for i in range(sorteadas_len):
+            print(sorteadas[i], end=" ")
+
+jogar()
+'''
